@@ -54,6 +54,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'netflixproj.urls'
@@ -144,7 +146,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 #
 #
 LOGIN_URL='login'
-LOGIN_REDIRECTORY_URL='netflixapp:Home'
+LOGIN_REDIRECT_URL='netflixapp:Home'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
