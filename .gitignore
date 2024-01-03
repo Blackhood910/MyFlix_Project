@@ -1,5 +1,7 @@
 #my netflix files ignore
 /netflixproj/media/movies/*.ts
+/netflixproj/media/movies/*.mp4
+/netflixproj/media/covers/*.jpg
 
 
 	
