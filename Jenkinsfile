@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        echo 'making ec2 connection'
+       
         GIT_SSH_CREDENTIALS = credentials('ec2-id-myflix')
         //GIT_REPO_URL = 'git@github.com:yourusername/yourrepository.git'
     }
