@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    environment {
+        GIT_SSH_CREDENTIALS = credentials('ec2-id-myflix')
+        //GIT_REPO_URL = 'git@github.com:yourusername/yourrepository.git'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Use SSH credentials to clone the repository
+                script {
+                   // checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'CloneOption', credentialsId: "${GIT_SSH_CREDENTIALS}"]], submoduleCfg: [], userRemoteConfigs: [[url: "${GIT_REPO_URL}"]]])
+                }
+            }
+        }
+
+        // Add more stages as needed
+    }
+
+    post {
+        always {
+            // Clean up resources if needed
+            cleanWs()
+        }
+    }
+}
