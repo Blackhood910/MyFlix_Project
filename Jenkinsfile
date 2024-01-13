@@ -1,13 +1,14 @@
 pipeline {
     agent any
 
-    environment {
-       
-        GIT_SSH_CREDENTIALS = credentials('ec2-id-myflix')
-        //GIT_REPO_URL = 'git@github.com:yourusername/yourrepository.git'
-    }
 
     stages {
+        steps {
+    sshagent (credentials: ['deploy-dev']) {
+    sh 'ssh -o StrictHostKeyChecking=no -l ubuntu@ 23.23.154.48 uname -a'
+  }
+
+}
          stage('Checkout') {
             steps {
                 // Clone the Git repository
