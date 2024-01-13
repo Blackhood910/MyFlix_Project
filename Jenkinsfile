@@ -1,19 +1,22 @@
 pipeline {
     agent any
 
-
     stages {
-        steps {
-    sshagent (credentials: ['deploy-dev']) {
-    sh 'ssh -o StrictHostKeyChecking=no -l ubuntu@ 23.23.154.48 uname -a'
-  }
+        stage('SSH Connection') {
+            steps {
+                script {
+                    sshagent(credentials: ['deploy-dev']) {
+                        sh 'ssh -o StrictHostKeyChecking=no -l ubuntu@23.23.154.48 uname -a'
+                    }
+                }
+            }
+        }
 
-}
-         stage('Checkout') {
+        stage('Checkout') {
             steps {
                 // Clone the Git repository
-                echo 'making git connection'
-                echo 'we are inside'
+                echo 'Making Git connection'
+                echo 'We are inside'
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/Blackhood910/MyFlix_Project.git']]])
             }
         }
