@@ -12,6 +12,7 @@ pipeline {
             steps {
                 // Clone the Git repository
                 echo 'making git connection'
+                echo 'we are inside'
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/Blackhood910/MyFlix_Project.git']]])
             }
         }
