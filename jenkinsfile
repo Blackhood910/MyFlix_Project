@@ -7,12 +7,10 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
+         stage('Checkout') {
             steps {
-                // Use SSH credentials to clone the repository
-                script {
-                   // checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'CloneOption', credentialsId: "${GIT_SSH_CREDENTIALS}"]], submoduleCfg: [], userRemoteConfigs: [[url: "${GIT_REPO_URL}"]]])
-                }
+                // Clone the Git repository
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/Blackhood910/MyFlix_Project.git']]])
             }
         }
 
