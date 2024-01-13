@@ -5,7 +5,7 @@ pipeline {
         stage('SSH Connection') {
             steps {
                 script {
-                    sshagent(credentials: ['deploy-dev']) {
+                    sshagent(credentials: ['ec2-id-myflix']) {
                         sh 'ssh -o StrictHostKeyChecking=no -l ubuntu@23.23.154.48 uname -a'
                     }
                 }
