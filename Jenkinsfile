@@ -7,7 +7,8 @@ pipeline {
                 script {
                     sshagent(credentials: ['ec2-id-myflix']) {
                         // Run the uname command on the remote machine
-                        sh 'ssh -o StrictHostKeyChecking=no -l ubuntu 23.23.154.48 uname -a'
+                        sh "ssh -o StrictHostKeyChecking=no ubuntu@23.23.154.48 'echo Hello from ec2'"
+
                     }
                 }
             }
