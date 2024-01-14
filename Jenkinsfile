@@ -13,6 +13,8 @@ pipeline {
                         sshagent(credentials: ['ec2-id-myflix']) {
                             // Run the uname command on the remote machine
                             sh """ssh -o StrictHostKeyChecking=no ubuntu@23.23.154.48 '
+                                // Delete the existing workspace
+                                deleteDir()
                                 git clone https://${GIT_TOKEN}@github.com/Blackhood910/MyFlix_Project.git'"""
 
                         }
