@@ -36,20 +36,20 @@ pipeline {
             }
         }
             stage('Myflix Deployment') {
-            steps {
-                script {
-                        sshagent(credentials: ['ec2-id-myflix']) {
-                            // Run the uname command on the remote machine
-                      sh """ssh -o StrictHostKeyChecking=no ubuntu@23.23.154.48 '
-                            echo 'deploying my flix project
-                            cd MyFlix_Project/ &&
-                            docker build -t Myflix
-                            docker run -d -p 8000:8000 Myflix '"""
-
-                        }
-                    }
-                }
+    steps {
+        script {
+            sshagent(credentials: ['ec2-id-myflix']) {
+                // Run the uname command on the remote machine
+                sh """ssh -o StrictHostKeyChecking=no ubuntu@23.23.154.48 '
+                    echo "deploying my flix project"
+                    cd MyFlix_Project/ &&
+                    docker build -t Myflix &&
+                    docker run -d -p 8000:8000 Myflix'"""
             }
+        }
+    }
+}
+
         // Add more stages as needed
     }
 
