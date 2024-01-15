@@ -43,7 +43,7 @@ pipeline {
                 sh """ssh -o StrictHostKeyChecking=no ubuntu@23.23.154.48 '
                     echo "deploying my flix project"
                     cd MyFlix_Project/ &&
-                    docker build -t myflix &&
+                    docker build -t myflix . &&
                     docker run -d -p 8000:8000 myflix'"""
             }
         }
