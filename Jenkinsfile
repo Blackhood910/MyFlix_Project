@@ -11,7 +11,7 @@ pipeline {
                 script {
                     sshagent(credentials: ['ec2-id-myflix']) {// Delete the existing workspace
                     sh """ 
-                        rm -rf MyFlix_Project
+                        rm -r MyFlix_Project
                     """
                     }
 
