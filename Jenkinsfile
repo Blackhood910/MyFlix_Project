@@ -35,10 +35,7 @@ pipeline {
                 }
             }
         }
-        // Add more stages as needed
-    }
-
-    stage('Myflix Deployment') {
+            stage('Myflix Deployment') {
             steps {
                 script {
                         sshagent(credentials: ['ec2-id-myflix']) {
@@ -53,11 +50,12 @@ pipeline {
                     }
                 }
             }
-        }
         // Add more stages as needed
     }
 
 
+        
+        // Add more stages as neede
     post {
         always {
             // Clean up resources if needed
