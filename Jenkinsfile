@@ -10,9 +10,10 @@ pipeline {
             steps {
                 script {
                     // Delete the existing workspace
-                    echo 'deleting directory'
-                    deleteDir()
-                    echo 'deleting directory'
+                    sh """ cd myflix
+                          deleteDir()
+                          echo 'deleting directory'
+                    """
                     }
                 }
             }
