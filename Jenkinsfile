@@ -11,7 +11,7 @@ pipeline {
                 script {
                     sshagent(credentials: ['ec2-id-myflix2']) {// Delete the existing workspace
                    
-                    sh """ssh -o StrictHostKeyChecking=no ubuntu@44.211.14.222'
+                    sh """ssh -o StrictHostKeyChecking=no ubuntu@44.211.14.222 '
                         rm -r MyFlix_Project' """
 
 
