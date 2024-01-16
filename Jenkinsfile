@@ -9,9 +9,9 @@ pipeline {
         stage('Delete Workspace') {
             steps {
                 script {
-                    sshagent(credentials: ['ec2-id-myflix']) {// Delete the existing workspace
+                    sshagent(credentials: ['ec2-id-myflix2']) {// Delete the existing workspace
                    
-                    sh """ssh -o StrictHostKeyChecking=no ubuntu@23.23.154.48 '
+                    sh """ssh -o StrictHostKeyChecking=no ubuntu@44.211.14.222'
                         rm -r MyFlix_Project' """
 
 
@@ -25,9 +25,9 @@ pipeline {
             steps {
                 script {
                     withCredentials([string(credentialsId: "${GIT_CREDS}", variable: 'GIT_TOKEN')]) {
-                        sshagent(credentials: ['ec2-id-myflix']) {
+                        sshagent(credentials: ['ec2-id-myflix2']) {
                             // Run the uname command on the remote machine
-                      sh """ssh -o StrictHostKeyChecking=no ubuntu@23.23.154.48 '
+                      sh """ssh -o StrictHostKeyChecking=no ubuntu@44.211.14.222 '
                             git clone https://${GIT_TOKEN}@github.com/Blackhood910/MyFlix_Project.git'"""
 
                         }
@@ -38,9 +38,9 @@ pipeline {
             stage('Myflix Deployment') {
     steps {
         script {
-            sshagent(credentials: ['ec2-id-myflix']) {
+            sshagent(credentials: ['ec2-id-myflix2']) {
                 // Run the uname command on the remote machine
-                sh """ssh -o StrictHostKeyChecking=no ubuntu@23.23.154.48 '
+                sh """ssh -o StrictHostKeyChecking=no ubuntu@44.211.14.222 '
                     echo "deploying my flix project"
                     cd MyFlix_Project/ &&
                     docker build -t myflix . &&
