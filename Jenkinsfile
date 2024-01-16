@@ -12,6 +12,7 @@ pipeline {
                     sshagent(credentials: ['ec2-id-myflix']) {// Delete the existing workspace
                    
                     sh """ssh -o StrictHostKeyChecking=no ubuntu@23.23.154.48 '
+                        docker-compose down -v &&
                         rm -r MyFlix_Project' """
 
 
@@ -43,8 +44,7 @@ pipeline {
                 sh """ssh -o StrictHostKeyChecking=no ubuntu@23.23.154.48 '
                     echo "deploying my flix project"
                     cd MyFlix_Project/ &&
-                    docker build -t myflix . &&
-                    docker run -d -p 8000:8000 myflix'"""
+                    docker-compose buiild --no-cache $$ docker-compose up -d'"""
             }
         }
     }
