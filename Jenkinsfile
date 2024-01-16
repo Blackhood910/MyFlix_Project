@@ -12,7 +12,7 @@ pipeline {
                     sshagent(credentials: ['ec2-id-myflix']) {// Delete the existing workspace
                    
                     sh """ssh -o StrictHostKeyChecking=no ubuntu@23.23.154.48 '
-                        docker-compose down -v &&
+                        docker stop \$(docker ps -a -q) &&
                         rm -r MyFlix_Project' """
 
 
