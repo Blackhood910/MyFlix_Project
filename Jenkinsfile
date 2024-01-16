@@ -29,7 +29,7 @@ pipeline {
                         sshagent(credentials: ['ec2-id-myflix2']) {
                             // Run the uname command on the remote machine
                       sh """ssh -o StrictHostKeyChecking=no ubuntu@44.211.14.222 '
-                            git clone https://${GIT_TOKEN}@github.com/Blackhood910/MyFlix_Project.git'"""
+                            git clone -b main https://${GIT_TOKEN}@github.com/Blackhood910/MyFlix_Project.git'"""
 
                         }
                     }
