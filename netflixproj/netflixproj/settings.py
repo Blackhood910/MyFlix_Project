@@ -88,8 +88,12 @@ WSGI_APPLICATION = 'netflixproj.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mfdatabase',
+        'USER': 'blackhood910',
+        'PASSWORD': 'Hinata135',
+        'HOST': 'mfdatabase.cr0emk8ooxaj.us-east-1.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
