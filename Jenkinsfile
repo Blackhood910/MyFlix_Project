@@ -34,11 +34,11 @@ pipeline {
     steps {
         script {
             sshagent(credentials: ['ec2-id-myflix']) {
+                echo "deploying my flix project"
                 // Run the uname command on the remote machine
                 sh """ssh -o StrictHostKeyChecking=no ubuntu@23.23.154.48 '
-                    echo "deploying my flix project"
                     cd MyFlix_Project &&
-                    sed -i 's/\r\$//g' ../entrypoint.sh
+                    sed -i 's/\r\$//g' ../entrypoint.sh &&
                     docker-compose build && docker-compose up -d'"""
             }
         }
