@@ -37,8 +37,8 @@ pipeline {
                 echo "deploying my flix project"
                 // Run the uname command on the remote machine
                 sh """ssh -o StrictHostKeyChecking=no ubuntu@23.23.154.48 '
-                    chmod +x ../entrypoint.sh &&
-                    sed -i 's/\r\$//g' ../entrypoint.sh &&
+                    chmod +x entrypoint.sh &&
+                    sed -i 's/\r\$//g' entrypoint.sh &&
                     cd MyFlix_Project &&
                     docker-compose build && docker-compose up -d'"""
             }
