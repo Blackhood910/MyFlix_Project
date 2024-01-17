@@ -37,7 +37,7 @@ pipeline {
                 sh """ssh -o StrictHostKeyChecking=no ubuntu@23.23.154.48 '
                     echo "deploying my flix project"
                     cd MyFlix_Project &&
-                    docker-compose build && docker-compose up -d)'"""
+                    docker-compose build && docker-compose up -d'"""
             }
         }
     }
