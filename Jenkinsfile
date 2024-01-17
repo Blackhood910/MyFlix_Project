@@ -14,11 +14,12 @@ pipeline {
                         sshagent(credentials: ['ec2-id-myflix']) {
                             // Run the uname command on the remote machine
                       sh """ssh -o StrictHostKeyChecking=no ubuntu@23.23.154.48 '
-                            (cd MyFlix_Project &&
-                            docker-compose down -v &&
-                            cd .. &&
+                            (
                             rm -r MyFlix_Project &&
-                            git clone -b devops_dev https://${GIT_TOKEN}@github.com/Blackhood910/MyFlix_Project.git) || 
+                            git clone -b devops_dev https://${GIT_TOKEN}@github.com/Blackhood910/MyFlix_Project.git) &&
+                            cd MyFlix_Project &&
+                            docker-compose down -v &&
+                            cd .. || 
                             (cd MyFlix_Project &&
                             rm -r MyFlix_Project &&
                             git clone -b devops_dev https://${GIT_TOKEN}@github.com/Blackhood910/MyFlix_Project.git)
