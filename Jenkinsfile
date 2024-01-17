@@ -6,23 +6,7 @@ pipeline {
     }
 
     stages {
-        stage('Delete Workspace') {
-            steps {
-                script {
-                    sshagent(credentials: ['ec2-id-myflix']) {// Delete the existing workspace
-                   
-                    sh """ssh -o StrictHostKeyChecking=no ubuntu@23.23.154.48 '
-                        cd MyFlix_Project/ &&
-                        docker-compose down -v &&
-                        rm -r MyFlix_Project' """
-
-
-                    }
-
-                }
-            }
-        }
-
+        
         stage('SSH Connection') {
             steps {
                 script {
@@ -30,7 +14,14 @@ pipeline {
                         sshagent(credentials: ['ec2-id-myflix']) {
                             // Run the uname command on the remote machine
                       sh """ssh -o StrictHostKeyChecking=no ubuntu@23.23.154.48 '
-                            git clone -b devops_dev https://${GIT_TOKEN}@github.com/Blackhood910/MyFlix_Project.git'"""
+                            cd MyFlix_Project/ &&
+                            docker-compose down -v &&
+                            rm -r MyFlix_Project &&
+                            git clone -b devops_dev https://${GIT_TOKEN}@github.com/Blackhood910/MyFlix_Project.git|| 
+                            cd MyFlix_Project/ &&
+                            rm -r MyFlix_Project &&
+                            git clone -b devops_dev https://${GIT_TOKEN}@github.com/Blackhood910/MyFlix_Project.git
+                            '"""
 
                         }
                     }
@@ -45,7 +36,7 @@ pipeline {
                 sh """ssh -o StrictHostKeyChecking=no ubuntu@23.23.154.48 '
                     echo "deploying my flix project"
                     cd MyFlix_Project/ &&
-                    docker-compose build --no-cache \$\$ docker-compose up -d'"""
+                    docker-compose build && docker-compose up -d)'"""
             }
         }
     }
