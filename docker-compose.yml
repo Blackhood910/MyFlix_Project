@@ -4,7 +4,10 @@ services:
   web:
     image: django-docker:0.0.1
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command1: docker-compose exec web python manage.py flush --no-input
+    command2: docker-compose exec web python manage.py migrate
+    command3: python manage.py runserver 0.0.0.0:8000
+
     ports:
       - "8000:8000"
     env_file:
