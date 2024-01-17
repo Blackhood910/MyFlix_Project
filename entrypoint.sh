@@ -1,4 +1,12 @@
 #!/bin/sh
+# Your initial command1
+docker-compose exec web python manage.py flush --no-input
+
+# Your initial command2
+docker-compose exec web python manage.py migrate
+
+# Your initial command3
+python manage.py runserver 0.0.0.0:8000
 
 if [ "$DATABASE" = "postgres" ]
 then
@@ -11,7 +19,7 @@ then
     echo "PostgreSQL started"
 fi
 
-python manage.py flush --no-input
-python manage.py migrate
+#python manage.py flush --no-input
+#python manage.py migrate
 
 exec "$@"
