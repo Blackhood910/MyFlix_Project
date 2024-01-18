@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", default="django-insecure-7!(no@g_muig&
 DEBUG = bool(os.environ.get("DEBUG"))
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-ALLOWED_HOSTS = os.environ.get("Myflix_Host",default="1")
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
