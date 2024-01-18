@@ -22,15 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = os.environ.get("SECRET_KEY")
-
-DEBUG = bool(os.environ.get("DEBUG", default=0))
-                            
+SECRET_KEY = os.environ.get("SECRET_KEY", default="django-insecure-7!(no@g_muig&#&pewt+2fh3d-^5d_fmi+o4mphdr#jwe5pz%c")
+# DEBUG = bool(os.environ.get("DEBUG", default=0))
+DEBUG = bool(os.environ.get("DEBUG"))
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = os.environ.get("Myflix_Host").split(" ")
-
+# DEBUG = True
+ALLOWED_HOSTS = os.environ.get("Myflix_Host",default="1")
 
 
 # Application definition
@@ -86,17 +83,18 @@ WSGI_APPLICATION = 'netflixproj.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-
 DATABASES = {
-    "default": {
-        "ENGINE": os.environ.get("SQL_ENGINE"),
-        "NAME": os.environ.get("SQL_DATABASE"),
-        "USER": os.environ.get("SQL_USER"),
-        "PASSWORD": os.environ.get("SQL_PASSWORD"),
-        "HOST": os.environ.get("SQL_HOST"),
-        "PORT": os.environ.get("SQL_PORT"),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mfdatabase',
+        'USER': 'blackhood910',
+        'PASSWORD': 'Hinata135',
+        'HOST': 'mfdatabase.cr0emk8ooxaj.us-east-1.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -164,3 +162,13 @@ ACCOUNT_USERNAME_REQUIRED= False
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#AWS_ACCESS_KEY_ID = 'AWS_ACCESS_KEY_ID '
+#AWS_SECRET_ACCESS_KEY = 'AWS_SECRET_ACCESS_KEY'
+#AWS_STORAGE_BUCKET_NAME = 'myflix-s3'
+#AWS_S3_SIGNATURE_NAME = 's3v4',
+#AWS_S3_REGION_NAME = 'us-east-1'
+#AWS_S3_FILE_OVERWRITE = False
+#AWS_DEFAULT_ACL =  None
+#AWS_S3_VERITY = True
+#DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
